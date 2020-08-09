@@ -8,7 +8,7 @@ class CashRegisterTest {
 	@Test
 	void should_process_execute_printing() {
 		//given
-		Printer printer = new Printer();
+		SpyPrinter printer = new SpyPrinter();
 		CashRegister cashRegister = new CashRegister(printer);
 		Purchase purchase = new Purchase();
 		//when
@@ -17,4 +17,13 @@ class CashRegisterTest {
 		assertTrue(printer.hasBeenCalledPrint);
 	}
 
+	private class SpyPrinter extends Printer {
+		public boolean hasBeenCalledPrint;
+
+		@Override
+		public void print(String content) throws PrinterOutOfPaperException {
+			hasBeenCalledPrint = true;
+			super.print(content);
+		}
+	}
 }

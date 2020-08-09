@@ -8,12 +8,13 @@ class CashRegisterTest {
 	@Test
 	void should_process_execute_printing() {
 		//given
-		CashRegister cashRegister = new CashRegister();
+		Printer printer = new Printer();
+		CashRegister cashRegister = new CashRegister(printer);
 		Purchase purchase = new Purchase();
 		//when
 		cashRegister.process(purchase);
 		//then
-		//verify that cashRegister.process will trigger print
+		assertTrue(printer.hasBeenCalledPrint);
 	}
 
 }
